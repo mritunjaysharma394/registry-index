@@ -7,8 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update Version of buildpacks/github-actions
+        run: |
+            sed -i 's/4.2.0/4.3.0/g' .github/workflows/register-buildpack.yml
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         with:
-          filename: .github/ISSUE_TEMPLATE/version-update.md
+          commit-message: update version to 4.3.0
+          title: Update Version of buildpacks/github-actions
+          body: Update version to reflect release changes
+          branch: main
+          base: main
