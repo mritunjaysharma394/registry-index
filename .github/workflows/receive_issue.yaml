@@ -16,5 +16,5 @@ jobs:
           commit-message: update version to 4.3.0
           title: Update Version of buildpacks/github-actions
           body: Update version to reflect release changes
-          branch: main
+          branch: update-version
           base: main
