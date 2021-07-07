@@ -19,7 +19,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.DISTRIBUTION_TOKEN }}
-          commit-message: update version to 4.3.0
+          commit-message: update version to latest release of buildpacks/github-actions
           title: Update Version of buildpacks/github-actions
           body: Update version to reflect release changes
           branch: update-version
