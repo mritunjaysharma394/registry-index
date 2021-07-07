@@ -10,11 +10,11 @@ jobs:
     if: ${{ startsWith(github.event.issue.title, 'ADD') }}
     runs-on: ubuntu-latest
     steps:
-      - uses: docker://ghcr.io/buildpacks/actions/registry/compute-metadata:4.2.0
+      - uses: docker://ghcr.io/buildpacks/actions/registry/compute-metadata:4.1.0
         id: metadata
         with:
           issue: ${{ toJSON(github.event.issue) }}
-      - uses: docker://ghcr.io/buildpacks/actions/registry/verify-namespace-owner:4.2.0
+      - uses: docker://ghcr.io/buildpacks/actions/registry/verify-namespace-owner:4.1.0
         id: verify-namespace-owner
         with:
           token: ${{ secrets.DISTRIBUTION_GITHUB_TOKEN }}
@@ -23,7 +23,7 @@ jobs:
           namespace: ${{ steps.metadata.outputs.namespace }}
           user: ${{ toJSON(github.event.issue.user) }}
           add-if-missing: true
-      - uses: docker://ghcr.io/buildpacks/actions/buildpackage/verify-metadata:4.2.0
+      - uses: docker://ghcr.io/buildpacks/actions/buildpackage/verify-metadata:4.1.0
         with:
           token: ${{ secrets.DISTRIBUTION_GITHUB_TOKEN }}
           id: ${{ steps.metadata.outputs.id }}
